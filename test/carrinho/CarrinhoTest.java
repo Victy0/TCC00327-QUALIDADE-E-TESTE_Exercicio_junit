@@ -41,7 +41,7 @@ public class CarrinhoTest {
 	
 	@DisplayName("Testa a remoção com sucesso de um item do carrinho.")
 	@Test
-	public void testRemoveItemSucess()  throws ProdutoNaoEncontradoException{
+	public void testRemoveItemSucesso()  throws ProdutoNaoEncontradoException{
 		// proporcionando cenário em que há um item no mínimo no carrinho 
 		carrinho.addItem(new Produto("Livro básico", 10.0));
 		
@@ -53,7 +53,7 @@ public class CarrinhoTest {
 	
 	@DisplayName("Testa a Exception ao tentar remover um item que não existe no carrinho.")
 	@Test
-	public void testRemoveItemFailed()  throws ProdutoNaoEncontradoException{
+	public void testRemoveItemFalha()  throws ProdutoNaoEncontradoException{
 		// proporcionando cenário em que há um item no mínimo no carrinho 
 		carrinho.addItem(new Produto("Livro básico", 10.0));
 		
