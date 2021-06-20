@@ -21,6 +21,13 @@ public class CarrinhoTest {
 		carrinho = new Carrinho();
 	}
 	
+	@DisplayName("Testa a inclusão de um item no carrinho.")
+	@Test
+	public void testAddItem()  throws ProdutoNaoEncontradoException{
+		carrinho.addItem(new Produto("Livro básico", 10.0));
+		assertEquals(1, carrinho.getQtdeItems());
+	}
+	
 	@DisplayName("Testa soma do valor total dos itens do carrinho.")
 	@Test
 	public void testGetValorTotal() {
@@ -30,13 +37,6 @@ public class CarrinhoTest {
 		carrinho.addItem(new Produto("Pacote de borrachas", 3.0));
 		
 		assertEquals(22.00, carrinho.getValorTotal());
-	}
-	
-	@DisplayName("Testa a inclusão de um item no carrinho.")
-	@Test
-	public void testAddItem()  throws ProdutoNaoEncontradoException{
-		carrinho.addItem(new Produto("Livro básico", 10.0));
-		assertEquals(1, carrinho.getQtdeItems());
 	}
 	
 	@DisplayName("Testa a remoção com sucesso de um item do carrinho.")
@@ -54,6 +54,9 @@ public class CarrinhoTest {
 	@DisplayName("Testa a Exception ao tentar remover um item que não existe no carrinho.")
 	@Test
 	public void testRemoveItemFailed()  throws ProdutoNaoEncontradoException{
+		// proporcionando cenário em que há um item no mínimo no carrinho 
+		carrinho.addItem(new Produto("Livro básico", 10.0));
+		
 		Produto removableItem = new Produto("Livro avançado", 30.00);
 		assertThrows(ProdutoNaoEncontradoException.class,
 				() -> carrinho.removeItem(removableItem));	
@@ -63,6 +66,9 @@ public class CarrinhoTest {
 	@DisplayName("Testa a remoção de todos os itens de um carrinho.")
 	@Test
 	public void testEsvazia()  {
+		// proporcionando cenário em que há um item no mínimo no carrinho 
+		carrinho.addItem(new Produto("Livro básico", 10.0));
+		
 		carrinho.esvazia();
 		assertEquals(0, carrinho.getQtdeItems());
 		
